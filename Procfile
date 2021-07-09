@@ -1,1 +1,1 @@
-worker: python lolBot.py
+worker: python main.py
