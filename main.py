@@ -45,6 +45,20 @@ def handle_massage(message):
    else:
     bot.reply_to(message, 'Can not access to min-api.cryptocompare.com')
 
+@bot.message_handler(commands=['news'])
+def handle_massage(message):
+   response = requests.get('https://min-api.cryptocompare.com/data/v2/news/?lang=EN', {
+  'auth': {
+    'user': CRYPTOCOMPARE_USER,
+    'pass': CRYPTOCOMPARE_PASS
+  }
+})
+   if response.status_code == 200:
+    parsed_string = json.loads(response.text)
+    bot.reply_to(message, str(parsed_string["Data"][0]["url"]))
+   else:
+    bot.reply_to(message, 'Can not access to min-api.cryptocompare.com')
+
 @bot.message_handler(commands=['start'])
 def handle_massage(message):
     bot.reply_to(message, 'Привет, юзер!')
