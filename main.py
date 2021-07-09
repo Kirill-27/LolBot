@@ -3,6 +3,9 @@ import requests
 import json
 
 BOT_TOKEN = '1830001814:AAGTh81pmrKyYlelAblAeu5MfcLjkm-s0ZE'
+CRYPTOCOMPARE_USER = 'kirillchernov01'
+CRYPTOCOMPARE_PASS = '6ae9562c140c794e0fa249394391df6c2738c83b5987902a1353499933d06d8f'
+
 
 bot = telebot.TeleBot(BOT_TOKEN)
 @bot.message_handler(commands=['btc'])
@@ -18,8 +21,8 @@ def handle_massage(message):
 def handle_massage(message):
    response = requests.get('https://min-api.cryptocompare.com/data/price?fsym=NEAR&tsyms=USD', {
   'auth': {
-    'user': 'kirillchernov01',
-    'pass': '6ae9562c140c794e0fa249394391df6c2738c83b5987902a1353499933d06d8f'
+    'user': CRYPTOCOMPARE_USER,
+    'pass': CRYPTOCOMPARE_PASS
   }
 })
    if response.status_code == 200:
@@ -32,8 +35,8 @@ def handle_massage(message):
 def handle_massage(message):
    response = requests.get('https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD', {
   'auth': {
-    'user': 'kirillchernov01',
-    'pass': '6ae9562c140c794e0fa249394391df6c2738c83b5987902a1353499933d06d8f'
+    'user': CRYPTOCOMPARE_USER,
+    'pass': CRYPTOCOMPARE_PASS
   }
 })
    if response.status_code == 200:
