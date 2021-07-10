@@ -11,7 +11,9 @@ def handle_massage(message):
    response = requests.get('https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH,NEAR&tsyms=USD')
    if response.status_code == 200:
     parsed_string = json.loads(response.text)
-    bot.reply_to(message, str("BTC/USD: " + str(parsed_string["BTC"]["USD"]) + "\nNEAR/USD: " + str(parsed_string["ETH"]["USD"]) +"\nETH/USD: " + str(parsed_string["NEAR"]["USD"])))
+    bot.reply_to(message, str("BTC/USD: " + str(parsed_string["BTC"]["USD"]) 
+    + "\nETH/USD: " + str(parsed_string["ETH"]["USD"])
+    +"\nNEAR/USD: " + str(parsed_string["NEAR"]["USD"])))
    else:
     bot.reply_to(message, 'Can not access to min-api.cryptocompare.com')
 
@@ -26,7 +28,9 @@ def handle_massage(message):
 
 @bot.message_handler(commands=['start'])
 def handle_massage(message):
-    bot.reply_to(message, 'Привет, юзер! Тут ты можешь узнать актуальный курс крипты к USD и иностранных валют к UAN')
+    bot.reply_to(message, "Привет, юзер! Тут ты можешь узнать актуальный курс крипты к USD\
+(для этого используй команды из меню) и иностранных валют к UAN\
+(для этого пиши наименование валюты боту)")
    
 @bot.message_handler(regexp='лох')
 def handle_massage(message):
