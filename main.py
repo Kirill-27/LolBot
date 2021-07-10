@@ -6,42 +6,14 @@ BOT_TOKEN = '1830001814:AAGTh81pmrKyYlelAblAeu5MfcLjkm-s0ZE'
 CRYPTOCOMPARE_USER = 'kirillchernov01'
 CRYPTOCOMPARE_PASS = '6ae9562c140c794e0fa249394391df6c2738c83b5987902a1353499933d06d8f'
 
-
 bot = telebot.TeleBot(BOT_TOKEN)
-@bot.message_handler(commands=['btc'])
-def handle_massage(message):
-   response = requests.get('https://blockchain.info/ru/ticker')
-   if response.status_code == 200:
-    parsed_string = json.loads(response.text)
-    bot.reply_to(message, str("BTC/USD: " + str(parsed_string["USD"]["last"])))
-   else:
-    bot.reply_to(message, 'Can not access to blockchain.info')
 
-@bot.message_handler(commands=['near'])
+@bot.message_handler(commands=['cryp'])
 def handle_massage(message):
-   response = requests.get('https://min-api.cryptocompare.com/data/price?fsym=NEAR&tsyms=USD', {
-  'auth': {
-    'user': CRYPTOCOMPARE_USER,
-    'pass': CRYPTOCOMPARE_PASS
-  }
-})
+   response = requests.get('https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH,NEAR&tsyms=USD')
    if response.status_code == 200:
     parsed_string = json.loads(response.text)
-    bot.reply_to(message, str("NEAR/USD: " + str(parsed_string["USD"])))
-   else:
-    bot.reply_to(message, 'Can not access to min-api.cryptocompare.com')
-
-@bot.message_handler(commands=['eth'])
-def handle_massage(message):
-   response = requests.get('https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD', {
-  'auth': {
-    'user': CRYPTOCOMPARE_USER,
-    'pass': CRYPTOCOMPARE_PASS
-  }
-})
-   if response.status_code == 200:
-    parsed_string = json.loads(response.text)
-    bot.reply_to(message, str("ETH/USD: " + str(parsed_string["USD"])))
+    bot.reply_to(message, str("BTC/USD: " + str(parsed_string["BTC"]["USD"]) + "\nNEAR/USD: " + str(parsed_string["ETH"]["USD"]) +"\nETH/USD: " + str(parsed_string["NEAR"]["USD"])))
    else:
     bot.reply_to(message, 'Can not access to min-api.cryptocompare.com')
 
@@ -61,7 +33,7 @@ def handle_massage(message):
 
 @bot.message_handler(commands=['start'])
 def handle_massage(message):
-    bot.reply_to(message, 'Привет, юзер!')
+    bot.reply_to(message, 'Привет, юзер! Тут ты можешь узнать актуальный курс крипты к USD и иностранных валют к UAN')
    
 @bot.message_handler(regexp='лох')
 def handle_massage(message):
