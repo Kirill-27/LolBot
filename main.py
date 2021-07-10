@@ -3,8 +3,6 @@ import requests
 import json
 
 BOT_TOKEN = '1830001814:AAGTh81pmrKyYlelAblAeu5MfcLjkm-s0ZE'
-CRYPTOCOMPARE_USER = 'kirillchernov01'
-CRYPTOCOMPARE_PASS = '6ae9562c140c794e0fa249394391df6c2738c83b5987902a1353499933d06d8f'
 
 bot = telebot.TeleBot(BOT_TOKEN)
 
@@ -19,12 +17,7 @@ def handle_massage(message):
 
 @bot.message_handler(commands=['news'])
 def handle_massage(message):
-   response = requests.get('https://min-api.cryptocompare.com/data/v2/news/?lang=EN', {
-  'auth': {
-    'user': CRYPTOCOMPARE_USER,
-    'pass': CRYPTOCOMPARE_PASS
-  }
-})
+   response = requests.get('https://min-api.cryptocompare.com/data/v2/news/?lang=EN')
    if response.status_code == 200:
     parsed_string = json.loads(response.text)
     bot.reply_to(message, str(parsed_string["Data"][0]["url"]))
