@@ -8,12 +8,13 @@ bot = telebot.TeleBot(BOT_TOKEN)
 
 @bot.message_handler(commands=['cryp'])
 def handle_massage(message):
-   response = requests.get('https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH,NEAR&tsyms=USD')
+   response = requests.get('https://min-api.cryptocompare.com/data/pricemulti?fsyms=BNB,BTC,ETH,NEAR&tsyms=USD')
    if response.status_code == 200:
     parsed_string = json.loads(response.text)
     bot.reply_to(message, str("BTC/USD: " + str(parsed_string["BTC"]["USD"]) 
     + "\nETH/USD: " + str(parsed_string["ETH"]["USD"])
-    +"\nNEAR/USD: " + str(parsed_string["NEAR"]["USD"])))
+    + "\nETH/USD: " + str(parsed_string["BNB"]["USD"])
+    + "\nNEAR/USD: " + str(parsed_string["NEAR"]["USD"])))
    else:
     bot.reply_to(message, 'Can not access to min-api.cryptocompare.com')
 
