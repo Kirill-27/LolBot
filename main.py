@@ -13,7 +13,7 @@ def handle_massage(message):
     parsed_string = json.loads(response.text)
     bot.reply_to(message, str("BTC/USD: " + str(parsed_string["BTC"]["USD"]) 
     + "\nETH/USD: " + str(parsed_string["ETH"]["USD"])
-    + "\nETH/USD: " + str(parsed_string["BNB"]["USD"])
+    + "\nBNB/USD: " + str(parsed_string["BNB"]["USD"])
     + "\nNEAR/USD: " + str(parsed_string["NEAR"]["USD"])))
    else:
     bot.reply_to(message, 'Can not access to min-api.cryptocompare.com')
