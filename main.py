@@ -4,7 +4,6 @@ import json
  
 BOT_TOKEN = '1830001814:AAGTh81pmrKyYlelAblAeu5MfcLjkm-s0ZE'
 
-
 bot = telebot.TeleBot(BOT_TOKEN)
 
 @bot.message_handler(commands=['cryp'])
