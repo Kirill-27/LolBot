@@ -1,2 +1,2 @@
 # LolBot
-my first python bot!
+my first python bot
